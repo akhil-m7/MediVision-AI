@@ -39,3 +39,6 @@ and more.
 - TensorFlow
 - Keras
 - MobileNetV2
+
+# Note:
+The trained .h5 model files are not uploaded due to GitHub file size limitations.
