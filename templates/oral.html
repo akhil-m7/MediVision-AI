@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Oral Disease Analysis</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body class="bg-light">
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary px-4">
+
+    <a class="navbar-brand fw-bold" href="/dashboard">
+        MediVision AI
+    </a>
+
+    <div class="ms-auto">
+
+        <a class="nav-link text-white" href="/dashboard">
+            Back to Dashboard
+        </a>
+
+    </div>
+
+</nav>
+
+<!-- PAGE -->
+<section class="py-5">
+
+    <div class="container">
+
+        <!-- TITLE -->
+        <div class="text-center mb-5">
+
+            <h1 class="fw-bold display-5">
+                Oral Disease Analysis
+            </h1>
+
+            <p class="lead text-muted">
+
+                Upload an oral image and symptoms
+                for AI-powered disease prediction.
+
+            </p>
+
+        </div>
+
+        <!-- CARD -->
+        <div class="row justify-content-center">
+
+            <div class="col-lg-8">
+
+                <div class="card shadow-lg border-0 rounded-4 p-5">
+
+                    <form method="POST" enctype="multipart/form-data">
+
+                        <!-- IMAGE PREVIEW -->
+                        <div class="text-center mb-4">
+
+                            <img
+                                id="preview"
+                                src="{{ url_for('static', filename='images/oral.jpeg') }}"
+                                width="200"
+                                class="img-fluid rounded"
+                            >
+
+                        </div>
+
+                        <!-- IMAGE UPLOAD -->
+                        <div class="mb-4">
+
+                            <label class="form-label fw-bold">
+                                Upload Oral Image
+                            </label>
+
+                            <input
+                                type="file"
+                                name="image"
+                                class="form-control form-control-lg"
+                                accept="image/*"
+                                onchange="previewImage(event)"
+                                required
+                            >
+
+                        </div>
+
+                        <!-- SYMPTOMS -->
+                        <div class="mb-4">
+
+                            <label class="form-label fw-bold">
+                                Enter Symptoms
+                            </label>
+
+                            <textarea
+                                name="symptoms"
+                                class="form-control form-control-lg"
+                                rows="5"
+                                placeholder="Example: mouth ulcer, gum pain, bleeding gums..."
+                            ></textarea>
+
+                        </div>
+
+                        <!-- ANALYZE BUTTON -->
+                        <button class="btn btn-primary btn-lg w-100">
+
+                            Analyze Oral Disease
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- IMAGE PREVIEW SCRIPT -->
+<script>
+
+function previewImage(event){
+
+    const reader = new FileReader();
+
+    reader.onload = function(){
+
+        const output = document.getElementById('preview');
+
+        output.src = reader.result;
+    };
+
+    reader.readAsDataURL(event.target.files[0]);
+}
+
+</script>
+
+</body>
+</html>
